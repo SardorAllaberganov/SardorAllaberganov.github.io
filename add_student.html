@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Adding Student</title>
+  <meta charset="utf-8">
+  <!-- links -->
+  <link rel="shortcut icon" href="data/img/st_info.png">
+  <link rel="stylesheet" type="text/css" href="data/css/bootstrap.min.css">
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="data/css/stylesheet.css">
+  <link rel="stylesheet" href="data/css/jquery-ui.css" />
+  <!-- scripts -->
+  <script type="text/javascript" src="data/js/jquery.min.js"></script>
+  <script type="text/javascript" src="data/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
+  <script type="text/javascript" src="data/js/jQueryUI.js"></script>
+  <script type="text/javascript">
+	$(function() {
+	  $("#datepicker").datepicker({
+	    changeMonth: true,
+	    changeYear: true,
+	    yearRange: '1950:2018',
+	  });
+	  $('#clear_dates1').on('click', function () {
+	    $("#datepicker").datepicker('setDate', null);
+	  });
+	});
+  </script>
+</head>
+<body>
+  <div ng-app="studentInfo" class="container-fluid">
+  	<div class="main-block">
+  	  <div class="left_aside_bar">
+  	    <div class="st-navbar">
+ 	  	  <nav class="navbar">
+		    <div class="container-fluid">
+		      <div class="navbar-header">
+		        <a class="navbar-brand imgLogo" href="#"></a>
+		      </div>
+		    </div>
+		  </nav>
+ 	    </div>
+ 	  	<div id="mySidenav" class="sidenav" id="accordion">
+ 	  	  <div class="dashboard_nav">
+		    <a data-toggle="collapse" data-parent="#accordion" href="#dashboard" class="active" id="dashboard_href"><i class="fab fa-dashcube"></i></i> Dashboard <i class="fas fa-chevron-right dropdown-fa arrow_right dashboard_fa"></i></a>
+		 	<div id="dashboard" class="panel-collapse collapse">
+			   <a href="#" class="inner_link"><i class="fas fa-chevron-right"></i> Admin</a> 
+			</div>
+ 	      </div>
+	 	  <div class="student_nav">
+		    <a data-toggle="collapse" data-parent="#accordion" href="#student" id="student_href"><i class="fas fa-users"></i> Students <i class="fas fa-chevron-right dropdown-fa arrow_right student_fa"></i></a>
+		 	<div id="student" class="panel-collapse collapse">
+			   <a href="#" class="inner_link"><i class="fas fa-align-left"></i> All Students</a> 
+			   <a href="#" class="inner_link"><i class="fas fa-address-card"></i> Student Details</a> 
+			   <a href="#" class="inner_link"><i class="fas fa-plus-circle"></i> Adding Student</a> 
+			   <a href="#"><i class="fas fa-chart-bar"></i> Students statistics</a>  
+			</div>
+ 	      </div>
+ 	      <div class="teacher_nav">
+		    <a data-toggle="collapse" data-parent="#accordion" href="#teacher" id="teacher_href"><i class="fas fa-user"></i></i> Teachers <i class="fas fa-chevron-right dropdown-fa arrow_right teacher_fa"></i></a>
+		 	<div id="teacher" class="panel-collapse collapse">
+			   <a href="#" class="inner_link"><i class="fas fa-align-left"></i> All Teachers</a> 
+			   <a href="#" class="inner_link"><i class="fas fa-address-card"></i> Teacher Details</a> 
+			   <a href="#" class="inner_link"><i class="fas fa-plus-circle"></i> Adding Teacher</a>   
+			</div>
+ 	      </div>
+ 	      <div class="class_nav">
+		    <a data-toggle="collapse" data-parent="#accordion" href="#class" id="class_href"><i class="far fa-calendar-alt"></i> Class <i class="fas fa-chevron-right dropdown-fa arrow_right class_fa"></i></a>
+		 	<div id="class" class="panel-collapse collapse">
+			   <a href="#" class="inner_link"><i class="fas fa-list-alt"></i> All class</a> 
+			   <a href="#" class="inner_link"><i class="fas fa-plus-circle"></i> Add new class</a> 
+			</div>
+ 	      </div>
+ 	      <a href="#"><i class="fab fa-leanpub"></i> Subject</a>
+ 	      <a href="#"><i class="far fa-envelope"></i> Message</a>
+ 	      <a href="#"><i class="far fa-sticky-note"></i> Notice</a>
+	 	  <a href="#"><i class="far fa-bookmark"></i> About</a>
+	 	  <a href="#"><i class="fas fa-cog"></i> Account</a>
+ 	  	</div>
+
+      </div>
+      <div class="center_main_block">
+      	<!--===== table part =====-->
+  	    <div ng-controller="adminController">
+  	      <div class="main-nav">
+  	      	<div class="col-md-8 col-sm-8 col-xs-8"><h3>Welcome to Student Management System</h3></div>
+  	      	<div class="col-md-4 col-sm-4 col-xs-4">
+  	      	  <div class="user-info">
+  	      	    <img src="data/img/user.png" class="user_img_aside">
+		 	    <ul class="nav navbar-nav">
+			      <li class="dropdown" ng-repeat="admin in admin_list">
+			   	    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			          {{ admin.name | upperCase_name}} <i class="fas fa-caret-down"></i>
+			          <p>Admin</p>
+			        </a>
+			        <ul class="dropdown-menu">
+			          <li><a href="#">See Profile</a></li>
+			          <li><a href="#">Update Profile</a></li>
+			          <li><a href="#">Logout</a></li>
+			        </ul>
+			      </li>
+			    </ul>
+		 	  </div>
+		 	</div>
+  	      </div>
+  	  	</div>
+  	    
+  	    <input type="text" class="navValue" value="Home" disabled="">
+
+  	      <div class="main_block_content" ng-controller="stInfoController">
+	  	    <div class="container-fluid">
+			  <div class="row">
+			    <table class="studentInfo">
+			      <tr class="top_row">
+			      	<div class="col-md-4 col-sm-4 col-xs-4">
+			      		<h4 class="all_students_title">All Students</h4>
+			      	</div>
+			      	<div class="col-md-8 col-sm-8 col-xs-8">
+				  	  <div class="col-md-3 col-sm-3 col-xs-3">
+			  	        <input class="search_input" placeholder="search" type="text" ng-model="search">
+			  	      </div>
+			  	      <div class="col-md-3 col-sm-3 col-xs-3">
+			  	        <select class="selectpicker show-menu-arrow">
+			  	          <option selected disabled hidden>Level</option>
+			  	          <option>Freshman</option>
+			  	      	  <option>Sophomore</option>
+			  	      	  <option>Junior</option>
+			  	      	  <option>Senior</option>
+			  	      	</select>
+			  	      </div>
+			  	      <div class="col-md-3 col-sm-3 col-xs-3">
+			  	        <select style="width: 100%;">
+			  	          <option selected disabled hidden>Course</option>
+			  	          <option>Database</option>
+			  	      	  <option>System programming</option>
+			  	      	  <option>Unix programming</option>
+			  	      	</select>
+			  	   	  </div>
+			  	      <div class="col-md-3 col-sm-3 col-xs-3">
+			  	        <select>
+			  	          <option selected disabled hidden>Group</option>
+			  	          <option>16-4</option>
+			  	      	  <option>16-5</option>
+			  	      	  <option>16-9</option>
+			  	      	  <option>16-16</option>
+			  	      	</select>
+		  	      	  </div>
+		  	        </div>
+			  	  </tr>
+			  	  <tr class="header-row">
+			  	  	<td><label><input type="checkbox" class="checkbox-circle" ng-model="selectall" /></label></td>
+			  	    <td class="table_des_row"> № </td>
+			  	    <td class="table_des_row" ng-click="orderByMe('id')">
+			  	  	 	Student ID <i class="fas fa-sort"></i>
+			  	  	</td>
+			  	  	<td class="table_des_row" ng-click="orderByMe('name')">
+			  	  	 	Name <i class="fas fa-sort"></i>
+			  	  	</td>
+			      	<td class="table_des_row">Email</td>
+			      	<td class="table_des_row" ng-click="orderByMe('gpa')"> 
+			      		GPA <i class="fas fa-sort"></i>
+			      	</td>
+			      	<td class="table_des_row">Action</td>
+			  	  </tr>
+			  	  <tr class="animate-repeat" id="table" ng-repeat="students in list | filter : search | orderBy:myOrderBy ">
+			  	  	<td><label><input type="checkbox" ng-checked="selectall" /></label></td>
+			  	    <td> {{ $index + 1 }} </td>
+			  	    <td>{{ students.id }}</td>
+			        <td>{{ students.name | upperCase_name}}</td>
+			        <td> {{ students.email }} </td>
+			        <td> {{ students.gpa}} </td>
+			        <td class="delete-button-column">
+			          <button class="watch_info"><i class="fas fa-eye" alt="See info"></i></button>
+			          <button class="edit_info"><i class="far fa-edit"></i></button> 
+			          <button class="delete_info" ng-click="list.splice($index,1)"><i class="fas fa-trash-alt"></i></button>
+			        </td>
+			      </tr>
+			  	</table>
+			  </div>
+		    <div class="st_add_part">
+		      <form action="">
+			    <input type="text" minlength="7" maxlength="7" value='id' ng-model="id" placeholder="Enter the student ID" />
+		        <input type="text" ng-model="firstname" placeholder="Enter the firstname" />
+			    <input type="text" ng-model="surname" placeholder="Enter the surname" />
+			    <input type="email" ng-model="email" placeholder="Enter a email" />
+			    <button ng-click="add()" type="submit">Add the student</button>
+			  </form>
+	        </div>
+	  	  </div>
+	    </div>
+		<!-- adding student form -->
+	  	<div class="adding_block">
+	  	  <div class="container-fluid">
+			  <div class="row">
+				<h4 class="adding_header_title">Add Student Form</h4>
+			  </div>
+			  <div class="row">
+			  	<h4 class="adding_main_title">Student Information <hr></h4>
+			  	<form action="" enctype="multipart/form-data">
+			  	  <div class="col-md-12">
+				    <div class="row">
+				  	  <div class="col-md-3">
+				  	  	<div class="adding_inputs">
+				  		  <span>First Name</span><input type="text">
+				  		</div>
+				  	  </div>
+				  	  <div class="col-md-3">
+				  	  	<div class="adding_inputs">
+				  		  <span>Last Name</span><input type="text">
+				  		</div>
+				  	  </div>				  	  
+				  	  <div class="col-md-3">
+				  	  	<div class="adding_inputs">
+				  	  	  <span>ID</span><input type="text" id="ID" maxlength="8">
+				  	  	</div>
+				  	  </div>
+				  	  <div class="col-md-3">
+				  	  	<div class="adding_inputs">
+				  	  	  <span>Phone number</span>
+				  	  	  <input type="text">
+				  	  	</div>
+				  	  </div>
+				  	</div>
+				  	<div class="row">
+				  	  <div class="col-md-3">
+				  	  	<div class="adding_inputs">
+				  	      <span>Gender</span> 
+				  	      <select name="" id="">
+				  	      	<option disabled selected hidden>Choose gender</option>
+				  	      	<option value="male">Male</option>
+				  	      	<option value="female">Female</option>
+				  	      </select>
+				  	    </div>
+				  	  </div>
+				  	  <div class="col-md-3">
+				  	  	<div class="adding_inputs">
+				  	  	  <span>Date of Birth</span>
+				  	  	  <div class="date_input">
+					  	    <input type="text" id="datepicker" readonly="readonly" name="date" min="1990-12-31" max="2018-12-31">
+		  					<input type="button" value="x" id="clear_dates1">
+	  					  </div>
+				  	    </div>
+				  	  </div>
+				  	  <div class="col-md-3">
+				  	  	<div class="adding_inputs">
+				  	      <span>Email</span><input type="email">
+				  	    </div>
+				  	  </div>
+				  	  <div class="col-md-3">
+				  	  	<div class="adding_inputs">
+				  	      <span>
+				  	      	<span>User image</span>
+			  	      	  	<label>Choose user image...<input type="file" class="set_user_img" name="user_img"></label>
+			  	      	  </span>
+				  		</div>
+				  	  </div>
+				  	</div>
+				  	<div class="row">
+				  	  <div class="col-md-3">
+				  	  	<div class="adding_inputs">
+				  	  	  <span>Address</span>
+				  	  	  <input type="text">
+				  	  	</div>
+				  	  </div>
+				  	  <div class="col-md-3">
+				  	  	<div class="adding_inputs">
+				  	  	  <span>Class</span>
+				  	  	  <select name="" id="">
+				  	  	  	<option hidden selected disabled>Choose class</option>
+				  	  	  	<option value="">SOL</option>
+				  	  	  	<option value="">SOCIE</option>
+				  	  	  	<option value="">CSE</option>
+				  	  	  	<option value="">ICE</option>
+				  	  	  </select>
+				  		</div>
+				  	  </div>
+				  	  <div class="col-md-3">
+				  	  	<div class="adding_inputs">
+				  	  	  <span>Section</span>
+				  	  	  <select name="" id="">
+				  	  	  	<option disabled hidden selected>Choose section</option>
+				  	  	  	<option value="">001</option>
+				  	  	  	<option value="">002</option>
+				  	  	  	<option value="">003</option>
+				  	  	  	<option value="">004</option>
+				  	  	  	<option value="">005</option>
+				  	  	  </select>
+				  		</div>
+				  	  </div>
+				  	</div>
+				  	<div class="row">
+				  	  <div class="button_group">
+				  	  	<button type="button" onclick="checkID()" value="Submit">Save</button>
+				  	    <button type="reset" value="Reset">Reset</button>
+				  	  </div>
+				  	</div>
+			  	  </div>
+			  	</form>
+			  </div>
+	  	  	</div>
+	  	  </div>
+	  	</div>
+	  </div>
+	</div>
+  </div>
+  <script type="text/javascript">
+	var clicked = false;
+    $('#dashboard_href').click(function(){
+        if(!clicked){
+			$(".dashboard_fa").addClass("rotate");
+			clicked = true;
+     	}
+	    else if(clicked){
+			$(".dashboard_fa").removeClass("rotate");
+			clicked = false;
+	    }
+    });
+    $('#student_href').click(function(){
+        if(!clicked){
+			$(".student_fa").addClass("rotate");
+			clicked = true;
+     	}
+	    else if(clicked){
+			$(".student_fa").removeClass("rotate");
+			clicked = false;
+	    }
+    });
+    $('#teacher_href').click(function(){
+        if(!clicked){
+			$(".teacher_fa").addClass("rotate");
+			clicked = true;
+     	}
+	    else if(clicked){
+			$(".teacher_fa").removeClass("rotate");
+			clicked = false;
+	    }
+    });
+    $('#class_href').click(function(){
+        if(!clicked){
+			$(".class_fa").addClass("rotate");
+			clicked = true;
+     	}
+	    else if(clicked){
+			$(".class_fa").removeClass("rotate");
+			clicked = false;
+	    }
+    });
+    $( "a" ).click(function() {
+	  var text = $( this ).text();
+	  $( ".navValue" ).val( text );
+	});
+	
+  	var isValidID = true;
+  	var	text;
+	function checkID() {
+	  	var id;
+	    id = document.getElementById("ID").value;
+	    if(id[0] === 'u' || id[0] === 'U' || id !==""){
+		   	for(var i = 1; i < id.length; i++){
+		   		if(id[i] > '0' || x[i] < '9')
+		   			alert("true");
+		   			return true;
+		   	}
+		}
+		else {
+		    alert("false");
+		    return false;
+		  }
+  		/*if (isValidID && document.getElementById('ID').value !== "") {
+			text = "ok"; alert("ok");
+			var submit = document.getElementById("submit").value;
+			submit.attr("type", "submit");
+			return true;
+		}
+		else{ 
+			text = "invalid"; alert("invalid");
+			 return false;
+		}
+  		isValidID = true;
+  		document.getElementById("demo").innerHTML = text;
+  		setTimeout(function(){ 
+  			document.getElementById("demo").innerHTML = "";
+  		}, 2500);*/
+	 }
+  </script>
+  <script type="text/javascript" src="data/js/index.js"></script>
+</body>
+</html>
+

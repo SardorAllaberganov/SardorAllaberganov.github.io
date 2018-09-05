@@ -22,10 +22,11 @@
   	  <div class="login">
         <h3>Member Login</h3>
   	  	<form action="">
-  	  	  <label><i class="fas fa-user"></i> User name: <br>
-  	  	  	</i><input type="text" name="id" id="ID" maxlength="8" class="login-form" placeholder="ID" />
+  	  	  <label>
+            <i class="fas fa-user"></i> User name:<br />
+            <input type="text" name="id" id="ID" maxlength="8" class="login-form" placeholder="ID" />
   	  	  </label>
-  	  	  <label><i class="fas fa-key"></i> Password: <br>
+  	  	  <label><i class="fas fa-key"></i> Password: <br />
 	  	  	<input type="password" name="password" id="password" class="login-form" placeholder="Password" />
   	  	  </label>
   	  	  <button type="button" onclick="checkID()"><i class="fas fa-sign-out-alt"></i> Sign in</button>
@@ -33,6 +34,10 @@
   	  	</form>
   	  </div>
     </div>
+  <div id="login-info" style="position: absolute!important;padding: 10px; width: 200px; height: 70px; background: #fff; z-index: 10">
+    <p>Login: admin</p>
+    <p>Password: admin</p>
+  </div>
   </div>
   <script>
   	var isValidID = true;
@@ -69,6 +74,9 @@
   			document.getElementById("demo").innerHTML = "";
   		}, 2500);
 	 }
+   setTimeout(function(){ 
+        document.getElementById("login-info").style.display = "none";
+      }, 2500);
   </script>
 </body>
 </html>
